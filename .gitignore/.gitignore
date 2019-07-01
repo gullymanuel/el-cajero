@@ -1,0 +1,83 @@
+#include<iostream>
+#include<string.h>
+#include<cstdlib>
+#include<conio.h>
+#define USER "171157"
+#define CONTRA "gullymanuel"
+using namespace std;
+int main(){
+	string usuario;
+	string pass;
+	int bill[]={10,20,50,100,200};
+	int nbill[]={10,10,10,10,10};
+	int ent[]={0,0,0,0,0};
+	int ntipos=5;
+	int i=0;
+	int suma=0;
+	int saldoinicial=1000,isaldo;
+	int opc,d,nuevosaldo,retiro;
+	int billetes;
+	cout<<"ingrese usuario: "<<endl;
+	getline(cin,usuario);
+	cout<<"ingrese contraseña:"<<endl;
+	getline(cin,pass);
+	if(usuario==USER && pass==CONTRA){
+		cout<<"\t Bienbenido a tu Cajero Automaticoatico"<<endl;
+	    cout<<"1. depositar dinero: "<<endl;
+		cout<<"2. retirar dinero:"<<endl;
+		cout<<"3. consultar saldo: "<<endl;
+		cout<<"4. salir"<<endl;
+		cout<<"seleccione una operacion que desee realizar"<<endl;cin>>opc;
+		switch(opc){
+			case 1:cout<<"usted eligio la opcion de depositar dinero"<<endl;
+			   	   cout<<"Cuanto dinero desea depositar: ";cin>>d;
+		       	   nuevosaldo=saldoinicial+d;
+		           cout<<"su saldo ahora es de:"<<nuevosaldo<<endl;
+		           cout<<"¡gracias por su preferencia lo esperamos pronto!"<<endl;break;
+			case 2:cout<<"usted eligio la opcion de retirar dinero"<<endl;
+		        	cout<<"cuanto dinero desea retirar: ";cin>>isaldo;
+					nuevosaldo=saldoinicial-isaldo;
+		        				cout<<"su saldso ahora es de: "<<nuevosaldo<<endl;
+					do{
+					    if(isaldo<=saldoinicial){
+							for(int i=ntipos-1;i>=0;i--){
+								if(isaldo>=bill[i]){
+								if(nbill[i]>0){
+								isaldo=isaldo-bill[i];
+								saldoinicial=saldoinicial-isaldo;
+	            				nbill[i]--;
+		        				ent[i]=1;
+		        				cout<<"usted retiro "<<ent[i]<<"de  "<<bill[i]<<endl;
+								break;
+		        
+             					}
+           	
+	    					}
+  							 }
+						}
+					}while(saldoinicial>0&&isaldo!=saldoinicial);
+					if(isaldo==saldoinicial)
+					cout<<"no se puede emitir ese monto ";
+					else{
+						if(saldoinicial==0)
+						cout<<" "<<ent[i];
+					}
+			   	   
+			   	    
+			   
+			case 3:cout<<"usted eligio la opcion de consultar saldo"<<endl;
+			       cout<<"su saldo es de: "<<saldoinicial<<endl;
+			case 4:cout<<"hasta luego";break;       
+	   } 
+	   
+	}
+	else{
+		cout<<"la clave o el usuario son incorrectos";
+	}
+	cin.get();
+	cin.get();
+	getch();
+	return 0;
+	
+	
+}
